@@ -67,28 +67,38 @@ TRUE_LABELS = [
     "negative",  # "I am not happy about this"
 ]
 
-# TODO: Add 5-10 more posts and labels.
-#
-# Requirements:
-#   - For every new post you add to SAMPLE_POSTS, you must add one
-#     matching label to TRUE_LABELS.
-#   - SAMPLE_POSTS and TRUE_LABELS must always have the same length.
-#   - Include a variety of language styles, such as:
-#       * Slang ("lowkey", "highkey", "no cap")
-#       * Emojis (":)", ":(", "🥲", "😂", "💀")
-#       * Sarcasm ("I absolutely love getting stuck in traffic")
-#       * Ambiguous or mixed feelings
-#
-# Tips:
-#   - Try to create some examples that are hard to label even for you.
-#   - Make a note of any examples that you and a friend might disagree on.
-#     Those "edge cases" are interesting to inspect for both the rule based
-#     and ML models.
-#
-# Example of how you might extend the lists:
-#
-# SAMPLE_POSTS.append("Lowkey stressed but kind of proud of myself")
-# TRUE_LABELS.append("mixed")
-#
-# Remember to keep them aligned:
-#   len(SAMPLE_POSTS) == len(TRUE_LABELS)
+# ---------------------------------------------------------------------
+# EXTENSION: Slang, Emojis, Sarcasm, and Ambiguity (Challenge Items)
+# ---------------------------------------------------------------------
+
+# 1. Sarcasm / Tone Shift
+SAMPLE_POSTS.append("Oh great, another unexpected unhandled exception to debug on a Friday night.")
+TRUE_LABELS.append("negative")
+
+# 2. Slang + Ambiguity
+SAMPLE_POSTS.append("That interview was lowkey mid no cap, but the office looks beautiful.")
+TRUE_LABELS.append("mixed")
+
+# 3. Modern Vernacular / Slang
+SAMPLE_POSTS.append("Senior developer pushed the hotfix right before deployment and it was a massive W.")
+TRUE_LABELS.append("positive")
+
+# 4. Complex Emoji Combinations
+SAMPLE_POSTS.append("My environment layout is completely broken, cannot even pull from origin main branch 💀🥲")
+TRUE_LABELS.append("negative")
+
+# 5. Mixed Sentiment Cancelation Layer
+SAMPLE_POSTS.append("The new framework performance is incredibly fast, but the documentation is awful.")
+TRUE_LABELS.append("mixed")
+
+# 6. Neutral Calibration / Structural Baseline
+SAMPLE_POSTS.append("The team seminar is scheduled to take place on Tuesday at two o'clock in room four.")
+TRUE_LABELS.append("neutral")
+
+
+# --- CRITICAL INTEGRITY CHECK ---
+# Enforces the deterministic length alignment constraint to prevent out-of-bounds index errors later.
+assert len(SAMPLE_POSTS) == len(TRUE_LABELS), (
+    f"🚨 DATASET LENGTH MISMATCH: SAMPLE_POSTS ({len(SAMPLE_POSTS)}) "
+    f"does not match TRUE_LABELS ({len(TRUE_LABELS)})."
+)
